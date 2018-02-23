@@ -1,0 +1,8 @@
+# Ignore the directories that Eclipse creates in the root directory of the workspace and that are not needed for our project
+/RemoteSystemsTempFiles
+/.metadata
+/.recommenders
+
+# For all Eclipse projects ignore the build directories of Eclipse and Maven
+bin
+target
