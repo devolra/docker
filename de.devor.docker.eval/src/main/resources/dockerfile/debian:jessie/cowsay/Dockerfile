@@ -9,6 +9,8 @@
 # Use the the Debian image with the version wheezy as base image:
 FROM debian:wheezy
 
+MAINTAINER Oliver Rapka <mail.devor@gmail.com>
+
 # Now run the following linux commands:
 RUN apt-get update && apt-get install -y cowsay fortune
 # Copy the given file from the host to the file system of the image.
