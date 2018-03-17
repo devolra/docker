@@ -1,0 +1,34 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>de.devor.docker.eval.volume</artifactId>
+	<name>de.devor.docker.eval.volume</name>
+	<description>Contains a service that runs in a Docker container and can write and read an XML file that contains data about persons.</description>
+
+	<parent>
+		<groupId>de.devor.docker.eval</groupId>
+		<artifactId>de.devor.docker.eval.releng</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../de.devor.docker.eval.releng/pom.xml</relativePath>
+	</parent>
+
+	<!-- Set the main class. So the JAR for this module is executable. -->
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>de.devor.docker.eval.volume.PersonServiceTestClient</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

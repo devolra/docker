@@ -26,6 +26,16 @@ Contains the parent POKM for the other POMs.</description>
 
 	<modules>
 		<module>../de.devor.docker.eval.dockerfile</module>
+		<module>../de.devor.docker.eval.volume</module>
 	</modules>
-	
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
 </project>
