@@ -1,0 +1,19 @@
+# Name of the image to build/container to run.
+# This results in an image named identidock_identidock and in a container named identidock_identidock_1. 
+identidock:
+  # For building the image:
+  # Build the image for that container from a Dockerfile that can be found in the current directory.
+  # Here we also can set the name of an image to use for the container.
+  build: .
+  
+  # For running the container:
+  # Equivalent to docker container run ... -p 5000:5000.
+  ports:
+    - "5000:5000"
+  # Equal to docker container run -e. Sets the environment variable ENV to DEV.  
+  environment:
+    ENV: DEV
+  # Equal to docker container run -v ... .
+  # Bind mount the directory app into the container.     
+  volumes:
+    - ./app:/app
