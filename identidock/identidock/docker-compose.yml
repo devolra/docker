@@ -16,13 +16,18 @@ identidock:
   # Bind mount the directory app into the container.     
   volumes:
     - ./app:/app
-  # Link the given container into this container.
+  # Link the given containers into this container.
   # Compose calculates the order to start the container,    
   links:
     - dnmonster
+    - redis
 
 
-# Name of the next/image container to run.
-# Here the image is downloaded from Docker Hub and then started in a container.    
+# Name of the next image/container to run.
+# Here the image is downloaded from the Docker Hub and then run in a container that is based on that image.    
 dnmonster:
-  image: amouat/dnmonster:1.0    
+  image: amouat/dnmonster:1.0
+  
+# Use a Redis-container to enable caching for the identicons
+redis:
+  image: redis:3.0

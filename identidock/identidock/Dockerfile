@@ -3,8 +3,8 @@ FROM python:3.4
 
 # Add a new system group (-r) and a new system user (-r) (-g for the group)
 RUN groupadd -r uwsgi && useradd -r -g uwsgi uwsgi
-# Install Flask, uWSGI, and requests
-RUN pip install Flask==0.10.1 uWSGI==2.0.8 requests==2.5.1
+# Install Flask, uWSGI, requests, and redis
+RUN pip install Flask==0.10.1 uWSGI==2.0.8 requests==2.5.1 redis==2.10.3
 
 # Set the working directory (in the container) for all following RUN-, CMD-, COPY-, ... -commands
 WORKDIR /app

@@ -2,12 +2,17 @@
 # Flask is a web-micoframework.
 # Also import the module Response from Flask that is used to offer the images. 
 from flask import Flask, Response, request
-# Imports the requests library that is used to communicate with the dnmonster service.
+# Import the requests library that is used to communicate with the dnmonster service.
 import requests
-# Imports the library for hashing the name that is used here.
+# Import the module for hashing the name that is used here.
 import hashlib
+# Import the redis-module for caching the identicons
+import redis
 
 app = Flask(__name__)
+
+# Initialize the Redis-cache. Docker-links are used, to resolve the 'redis"-host.
+cache = redis.StrictRedis(host='redis', port=6379, db=0)
 
 # Used for the hash-function that is used above.
 # Changing this value makes it possible to use this python script for other sites so that different identicons for
@@ -57,12 +62,21 @@ def mainpage():
 
 
 @app.route('/monster/<name>')
-def get_identicon(name):    
-    # Create a GET request for the given service.
-    # This service is running in another container that is based on the 'dnmonster'-image.
-    # This returns an identicon with 80 pixels for the given name. 
-    r = requests.get('http://dnmonster:8080/monster/' + name + '?size=80')
-    image = r.content
+def get_identicon(name):
+    # Check if the image is in the cache. 
+    image = cache.get(name)
+    # If trhe image is not cached... 
+    if image is None:
+        # Debug the information...
+        print("Cache miss", flush=True)
+        # and get the image:
+        # - Create a GET request for the given service.
+        # - This service is running in another container that is based on the 'dnmonster'-image.
+        # - This returns an identicon with 80 pixels for the given name. 
+        r = requests.get('http://dnmonster:8080/monster/' + name + '?size=80')
+        image = r.content
+        # Add the image to the cache.
+        cache.set(name, image)
     
     return Response(image, mimetype='image/png')
 
