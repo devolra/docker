@@ -1,0 +1,11 @@
+------------------------------------------------------------------------------------------------------------------------
+Docker Compose:
+------------------------------------------------------------------------------------------------------------------------
+
+- Um die Bash-Completion für Docker Compose zu bekommen, ist noch folgender Schritt notwendig:
+	sudo sh -c "curl -L https://raw.githubusercontent.com/docker/compose/${COMPOSE_VERSION}/contrib/completion/bash/docker-compose > /etc/bash_completion.d/docker-compose"
+  Die offizielle Docker Dokumentation für Docker Compose dokumentiert dieses nicht.	
+
+- Docker Compose ist in der Zwischenzeit in der Version 2.x verfügbar.
+	- Hier gibt es einige interessante Neuerungen bzgl. Networking und Volumes. So ist es z.B. möglich Images, die
+	  gebaut werden sollen, mit einem Tag zu versehen, so dass diese auch einen Namen bekommen.

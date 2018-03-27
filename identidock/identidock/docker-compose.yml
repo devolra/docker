@@ -2,8 +2,7 @@
 # This results in an image named identidock_identidock and in a container named identidock_identidock_1. 
 identidock:
   # For building the image:
-  # Build the image for that container from a Dockerfile that can be found in the current directory.
-  # Here we also can set the name of an image to use for the container.
+  # Build the image for that container from a Dockerfile that can be found in the given directory.
   build: .
   
   # For running the container:
@@ -17,3 +16,13 @@ identidock:
   # Bind mount the directory app into the container.     
   volumes:
     - ./app:/app
+  # Link the given container into this container.
+  # Compose calculates the order to start the container,    
+  links:
+    - dnmonster
+
+
+# Name of the next/image container to run.
+# Here the image is downloaded from Docker Hub and then started in a container.    
+dnmonster:
+  image: amouat/dnmonster:1.0    
